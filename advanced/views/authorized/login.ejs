@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body class="text-center">
+    <form class="form-signin" action="/authentication/login" method="POST">
+        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control mb-3" placeholder="Password" name="password" required>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        <% if (errorMessage) { %>
+        <div class="alert alert-danger mt-2 mb-2"><%= errorMessage %></div>
+        <% } %>
+        <p class="mt-5 mb-3 text-muted">&copy; Copyright 2019, all rights reserved.</p>
+    </form>
+</body>
+
+
+</html>

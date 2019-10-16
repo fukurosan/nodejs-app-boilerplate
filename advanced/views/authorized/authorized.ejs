@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="<%= csrfToken %>">
+    <title>Authorized Home</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>You are authorized!</h1>
+        </div>
+    </div>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <% if (message) { %>
+            <% if (isError) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } else { %>
+            <div class="alert alert-success success-card"><%= message %></div>
+            <% } %>
+            <% } %>
+            <div style="padding: 10px;">
+
+                <form action="/authorized/writeForm" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                    <h6><b>Data Input</b></h6>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="MY_VALUE">My Value</label>
+                            <input class="form-control" placeholder="" name="MY_VALUE" value="<%= MY_VALUE %>"
+                                required />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="MY_SECOND_VALUE">My Second Value</label>
+                            <input class="form-control" placeholder="" name="MY_SECOND_VALUE"
+                                value="<%= MY_SECOND_VALUE %>" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="MY_FILE">Upload file (.png)</label>
+                            <input class="form-control-file" placeholder="My file (png)" name="MY_FILE" accept=".png"
+                                type="file" />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mt-3" onClick="">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <form action="/authentication/logout" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="btn btn-primary w-100 mt-3" onClick="">Logout</button>
+    </form>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
